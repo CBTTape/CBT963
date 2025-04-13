@@ -1,0 +1,24 @@
+)Attr Default(%+_)
+   ! type( input) intens(high) caps(on ) just(left ) pad('_')
+   # type( input) intens(high) caps(off) just(left ) pad('_')
+   $ type(output) intens(high) caps(off) just(asis ) pad(' ')
+   ~ type(text) intens(high) color(blue) hilite(reverse)
+   ` type(text) intens(high) color(red)
+)Body  Expand(\\)
+%-\-\- ~Product Launch Point Management%-\-\-
+%Command ===>_zcmd
+%
++ Enter, Verify, or Change (* = required)
++
++*Application Name         !app     +A unique application name 1-8 characters
++*Description              #desc                                             +
++
++*Application Start (can not be modified)
++    Command    $cmd                                                         +
++
+)Init
+  .help = plpmha
+)Proc
+ ver (&app,nb)
+ ver (&desc,nb)
+)End

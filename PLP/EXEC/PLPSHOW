@@ -1,0 +1,11 @@
+/* rexx */
+address ispexec
+'vget zapplid'
+if zapplid <> "PLP" then do
+   "Select cmd(plpshow) newappl(plp)"
+   exit 0
+   end
+'vget (grpdsn)'
+say 'grpdsn:' grpdsn
+'control nondispl enter'
+exit 0

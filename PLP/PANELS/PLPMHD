@@ -1,0 +1,33 @@
+)Panel Keylist(ISPHelp,ISP)
+)Attr Default(@+_)
+/* _ type( input) intens(high) caps(on ) just(left )               */
+   ! type(output) intens(high) caps(off) just(asis ) color(white)
+   ~ type(text) intens(high) color(blue) hilite(reverse)
+   ` type(text) intens(high) color(red)
+   @ type(text) intens(high)
+   # area(SCRL) Extend(ON)
+)Body  Expand(\\)
+@-\-\- ~Product Launch Point Application Help@-\-\-
+@Command ===>_zcmd
+@
++                                                                @Up F10 Dn F11
+#help -------------------------------------------------------------------------#
+)Area Help
++  When you want to define additional application specific datasets to
++  the PLP application this panel is where you do it.
++
+` DDx+
++
++    Enter a DDname that the application requires. If the DDname field
++    is blank then the dataset will be concatenated to the prior defined
++    DDname.
++
+` DSNx+
++
++    Enter the dataset name, using standard ISPF dataset naming standards,
+     that is to be allocated to the specified DDname.
++
+)Init
+  .cursor = zcmd
+)Proc
+)end

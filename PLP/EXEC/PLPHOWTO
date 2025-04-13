@@ -1,0 +1,44 @@
+/* --------------------  rexx procedure  -------------------- *
+ * Name:      PLPHOWTO                                        *
+ *                                                            *
+ * Function:  Browse a HowTo member or dataset for the        *
+ *            PLP ISPF Application                            *
+ *                                                            *
+ * Syntax:    %plphowto dataset(member)                       *
+ *                                                            *
+ * Author:    Lionel B. Dyck                                  *
+ *                                                            *
+ * History:                                                   *
+ *            03/21/16 - Creation                             *
+ *                                                            *
+ * Exit with return code of 8 if a problem is found,          *
+ * and issue ISPF Messages.                                   *
+ * ---------------------------------------------------------- */
+ arg dataset .
+
+ Address ISPExec
+/* -------------------- *
+ * Validate the Dataset *
+ * -------------------- */
+ if pos('*',dataset) = 0 then do
+    if length(dataset) = 0 then do
+       zedsmsg = 'Error'
+       zedlmsg = 'No dataset specified - try again'
+       'Setmsg Msg(isrz000)'
+       Exit 8
+       end
+    stat = sysdsn(dataset)
+    if 'OK' <> stat then
+       if wordpos('MEMBER',stat) > 0 then
+          if opt <> 'E' then do
+             zedsmsg = 'Error'
+             zedlmsg = 'Dataset:' dataset sysdsn(dataset)
+             'Setmsg Msg(isrz000)'
+             Exit 8
+             end
+ end
+/* -------------------------- *
+ * Browse the dataset(member) *
+ * -------------------------- */
+   When opt = 'B' then 'Browse Dataset('dataset')'
+ Exit 0
